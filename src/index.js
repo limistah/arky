@@ -24,6 +24,7 @@ function encrypt(
   encrypted = Buffer.concat([encrypted, cipher.final()]);
   return {
     hash: encrypted.toString("hex"),
+    base64: encrypted.toString("base64"),
     key: encryptionKey.toString("base64"),
   };
 }
