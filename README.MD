@@ -12,7 +12,7 @@ yarn add arky
 
 ## APIs
 
-#### Encrypt A Text
+### Example
 
 ```js
 const crypto = require("crypto");
@@ -34,3 +34,26 @@ console.log("Decrypted text:", decrypted);
 // Hashed Key: aZ75h8W5uTo798I+iV6vtERjMBLSl+ZkEbTlX0WO7OQ=
 //Decrypted text: This is the text to be encrypted
 ```
+
+### encrypt() : {hash, key}
+
+**Encrypts a string**
+
+- text _string_ The text to be encoded
+- key _string_ 32 bit string to used as a secret
+- algorithm _string_ The encryption algorithm to use
+
+The returned object contains a
+
+- hash _string_ the encrypted string
+- key _string_ the key used for hashing
+
+### decrypt() : {hash, key}
+
+**Decrypts a string**
+
+- hash _string_ The encrypted string
+- key _string_ 32 bit string to used as a secret for encryption
+- algorithm _string_ The encryption algorithm to use
+
+Returns a string matching the original text
