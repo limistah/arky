@@ -1,6 +1,6 @@
 {
   "name": "arky",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Text encryption and decryption library",
   "main": "./src/index.js",
   "scripts": {
