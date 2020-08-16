@@ -1,6 +1,6 @@
 {
-  "name": "fwjs",
-  "version": "0.0.2",
+  "name": "arky",
+  "version": "1.0.0",
   "description": "Text encryption and decryption library",
   "main": "./src/index.js",
   "scripts": {
