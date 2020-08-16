@@ -10,8 +10,15 @@ const _algorithm = "aes-256-cbc";
  * @param {string} algorithm The encryption algorithm to use
  * @return {object} enc Encryption details
  */
-function encrypt(text, key = crypto.randomBytes(32), algorithm = _algorithm) {
+function encrypt(
+  text,
+  key = crypto.randomBytes(32),
+  algorithm = _algorithm,
+  iv = 16
+) {
   const encryptionKey = key || Buffer.from(key);
+  const vectorLength = Buffer.alloc(iv, 0);
+
   let cipher = crypto.createCipheriv(algorithm, encryptionKey, vectorLength);
   let encrypted = cipher.update(text);
   encrypted = Buffer.concat([encrypted, cipher.final()]);
@@ -26,10 +33,12 @@ function encrypt(text, key = crypto.randomBytes(32), algorithm = _algorithm) {
  * @param {string} hash The encrypted text
  * @param {string} encryptionKey The key used to encrypt
  */
-function decrypt(hash, encryptionKey, algorithm = _algorithm) {
+function decrypt(hash, encryptionKey, algorithm = _algorithm, iv = 16) {
   if (!encryptionKey) {
     return false;
   }
+  const vectorLength = Buffer.alloc(iv, 0);
+
   let encryptedHash = Buffer.from(hash, "hex");
   let decipher = crypto.createDecipheriv(
     algorithm,

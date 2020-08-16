@@ -45,7 +45,8 @@ console.log("Decrypted text:", decrypted);
 
 - text _string_ The text to be encoded
 - key _string_ 32 bit string to used as a secret. Must be of 24 characters else it returns false
-- algorithm _string_ The encryption algorithm to use. Default to "aes-256-cbc".
+- algorithm _string_ (optional) The encryption algorithm to use. Default to "aes-256-cbc".
+- iv _number_ (optional) The iv vector length to use. Default to 16.
 
 The returned object contains a
 
@@ -58,6 +59,7 @@ The returned object contains a
 
 - hash _string_ The encrypted string
 - key _string_ 32 bit string to used as a secret for encryption
-- algorithm _string_ The encryption algorithm to use. Default to "aes-256-cbc".
+- algorithm _string_ (optional) The encryption algorithm to use. Default to "aes-256-cbc".
+- iv _number_ (optional) The iv vector length to use. Default to 16.
 
 Returns a string matching the original text
