@@ -1,6 +1,8 @@
 # Arky
 
-A library to encrypt and decrypt text
+A library to encrypt and decrypt string in nodejs
+
+It allows you to set your encryption key and decrypt with the the same encryption key.
 
 ## Installation
 
@@ -10,15 +12,14 @@ npm install arky
 yarn add arky
 ```
 
-## APIs
-
-### Example
+## Example
 
 ```js
+// You don't need this if you have a valid key.
 const crypto = require("crypto");
 
 const arky = require("arky");
-// You can use whatever as the key.
+// You can use whatever as the key
 const key = crypto.randomBytes(32);
 const testString = "This is the text to be encrypted";
 const encrypted = arky.encrypt(testString, key);
@@ -36,13 +37,15 @@ console.log("Decrypted text:", decrypted);
 // Decrypted text: This is the text to be encrypted
 ```
 
-### encrypt() : {hash, key}
+## APIs
+
+### encrypt() : {hash, key} | false
 
 **Encrypts a string**
 
 - text _string_ The text to be encoded
-- key _string_ 32 bit string to used as a secret
-- algorithm _string_ The encryption algorithm to use
+- key _string_ 32 bit string to used as a secret. Must be of 24 characters else it returns false
+- algorithm _string_ The encryption algorithm to use. Default to "aes-256-cbc".
 
 The returned object contains a
 
@@ -55,6 +58,6 @@ The returned object contains a
 
 - hash _string_ The encrypted string
 - key _string_ 32 bit string to used as a secret for encryption
-- algorithm _string_ The encryption algorithm to use
+- algorithm _string_ The encryption algorithm to use. Default to "aes-256-cbc".
 
 Returns a string matching the original text
