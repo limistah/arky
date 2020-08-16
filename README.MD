@@ -17,7 +17,8 @@ yarn add arky
 ```js
 const crypto = require("crypto");
 
-const arky = require("./src");
+const arky = require("arky");
+// You can use whatever as the key.
 const key = crypto.randomBytes(32);
 const testString = "This is the text to be encrypted";
 const encrypted = arky.encrypt(testString, key);
@@ -32,7 +33,7 @@ console.log("Decrypted text:", decrypted);
 // Test String: This is the text to be encrypted
 // Hash Text: 8e12579f462e3bad1b4ab95d6789ccc291bcc17f0307b09f3b0be6d81a29a0e9f3ab9c001bb34d790121ea896b90563f
 // Hashed Key: aZ75h8W5uTo798I+iV6vtERjMBLSl+ZkEbTlX0WO7OQ=
-//Decrypted text: This is the text to be encrypted
+// Decrypted text: This is the text to be encrypted
 ```
 
 ### encrypt() : {hash, key}
