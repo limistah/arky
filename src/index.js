@@ -1,6 +1,7 @@
 const crypto = require("crypto");
 
 const vectorLength = Buffer.alloc(16, 0);
+const _algorithm = "aes-256-cbc";
 
 /**
  * Encrypts a string.
@@ -9,18 +10,14 @@ const vectorLength = Buffer.alloc(16, 0);
  * @param {string} algorithm The encryption algorithm to use
  * @return {object} enc Encryption details
  */
-function encrypt(
-  text,
-  key = crypto.randomBytes(32),
-  algorithm = "aes-256-cbc"
-) {
+function encrypt(text, key = crypto.randomBytes(32), algorithm = _algorithm) {
   const encryptionKey = key || Buffer.from(key);
   let cipher = crypto.createCipheriv(algorithm, encryptionKey, vectorLength);
   let encrypted = cipher.update(text);
   encrypted = Buffer.concat([encrypted, cipher.final()]);
   return {
     hash: encrypted.toString("hex"),
-    key: encryptionKey.toString("utf-8"),
+    key: encryptionKey.toString("base64"),
   };
 }
 
@@ -29,7 +26,7 @@ function encrypt(
  * @param {string} hash The encrypted text
  * @param {string} encryptionKey The key used to encrypt
  */
-function decrypt(hash, encryptionKey) {
+function decrypt(hash, encryptionKey, algorithm = _algorithm) {
   if (!encryptionKey) {
     return false;
   }
